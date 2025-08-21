@@ -1,0 +1,45 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+NC='\033[0m'
+
+function check_dnstt_client() {
+    echo "----------------------------------------------------"
+    center_text "=== DNSTT Client Menu ==="
+    ARCH=$(uname -m)
+    if [[ "$ARCH" != "arm64" && "$ARCH" != "x86_64" ]]; then
+        echo "Error: Only arm64 and x64 (x86_64) architectures are supported."
+        exit 1
+    fi
+    if ! command -v dnstt-client >/dev/null 2>&1; then
+        echo "dnstt-client is not installed. Installing automatically..."
+        pkg update && pkg install -y wget
+        wget https://github.com/hahacrunchyrollls/jerico-termux/raw/refs/heads/main/dnstt-client -O dnstt-client
+        mv dnstt-client /data/data/com.termux/files/usr/bin/
+        chmod +x /data/data/com.termux/files/usr/bin/dnstt-client
+        echo "dnstt-client installed."
+        main_installation
+    fi
+}
+
+main_installation() {
+
+    echo
+    echo -e "${WHITE}╔══════════════════════════╗${NC}"
+    echo -e "${WHITE}   INSTALLATION COMPLETE   ${NC}"
+    echo -e "${WHITE}╚══════════════════════════╝${NC}"
+    echo
+    echo -e "${CYAN}CLIENT SCRIPT${NC}"
+    echo -e "${BLUE}https://phcorner.net/members/phc_jerico.1922181${NC}"
+    echo
+    echo -e "${YELLOW}Press Enter to continue...${NC}"
+    read -p ""
+}
+
+check_dnstt_client
