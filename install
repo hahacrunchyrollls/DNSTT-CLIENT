@@ -18,9 +18,9 @@ function check_dnstt_client() {
         exit 1
     fi
     if ! command -v dnstt-client >/dev/null 2>&1; then
-        echo "dnstt-client is not installed. Installing automatically..."
+        echo "Installing Please wait...."
         pkg update && pkg install -y wget
-        wget https://github.com/hahacrunchyrollls/DNSTT-CLIENT/raw/refs/heads/main/dnstt-client -O dnstt-client
+        wget https://github.com/hahacrunchyrollls/jerico-termux/raw/refs/heads/main/dnstt-client -O dnstt-client
         mv dnstt-client /data/data/com.termux/files/usr/bin/
         chmod +x /data/data/com.termux/files/usr/bin/dnstt-client
         echo "dnstt-client installed."
