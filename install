@@ -21,8 +21,9 @@ function check_dnstt_client() {
     echo "----------------------------------------------------"
     center_text "=== DNSTT Client Menu ==="
     ARCH=$(uname -m)
-    if [[ "$ARCH" != "arm64" && "$ARCH" != "x86_64" ]]; then
-        echo "Error: Only arm64 and x64 (x86_64) architectures are supported."
+    # Support arm64, aarch64, x86_64
+    if [[ "$ARCH" != "arm64" && "$ARCH" != "aarch64" && "$ARCH" != "x86_64" ]]; then
+        echo "Error: Only arm64, aarch64, and x64 (x86_64) architectures are supported."
         exit 1
     fi
     if ! command -v dnstt-client >/dev/null 2>&1; then
