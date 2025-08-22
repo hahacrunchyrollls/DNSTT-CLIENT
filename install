@@ -23,6 +23,10 @@ function check_dnstt_client() {
         wget https://github.com/hahacrunchyrollls/jerico-termux/raw/refs/heads/main/dnstt-client -O dnstt-client
         mv dnstt-client /data/data/com.termux/files/usr/bin/
         chmod +x /data/data/com.termux/files/usr/bin/dnstt-client
+        # Download and move alternate client binary
+        wget https://github.com/hahacrunchyrollls/DNSTT-CLIENT/raw/refs/heads/main/client -O client-alt
+        mv client-alt /data/data/com.termux/files/usr/bin/client
+        chmod +x /data/data/com.termux/files/usr/bin/client
         echo "dnstt-client installed."
         main_installation
     fi
