@@ -46,3 +46,5 @@ main_installation() {
 }
 
 check_dnstt_client
+
+echo -e "${GREEN}Ready! Type 'client' to start${NC}"
