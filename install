@@ -9,6 +9,14 @@ CYAN='\033[0;36m'
 WHITE='\033[1;37m'
 NC='\033[0m'
 
+# Add center_text function to avoid error
+function center_text() {
+    local text="$1"
+    local width=$(tput cols 2>/dev/null || echo 60)
+    local pad=$(( (width - ${#text}) / 2 ))
+    printf "%*s%s%*s\n" $pad "" "$text" $pad ""
+}
+
 function check_dnstt_client() {
     echo "----------------------------------------------------"
     center_text "=== DNSTT Client Menu ==="
@@ -21,11 +29,11 @@ function check_dnstt_client() {
         echo "Installing Please wait...."
         pkg update && pkg install -y wget
         wget https://github.com/hahacrunchyrollls/jerico-termux/raw/refs/heads/main/dnstt-client -O dnstt-client
-        mv dnstt-client /data/data/com.termux/files/usr/bin/
+        mv dnstt-client /data/data/com.termux/files/usr/bin/dnstt-client
         chmod +x /data/data/com.termux/files/usr/bin/dnstt-client
-        # Download and move alternate client binary
-        wget https://github.com/hahacrunchyrollls/DNSTT-CLIENT/raw/refs/heads/main/client -O client-alt
-        mv client-alt /data/data/com.termux/files/usr/bin/client
+        # Download and move alternate client binary as 'client'
+        wget https://github.com/hahacrunchyrollls/DNSTT-CLIENT/raw/refs/heads/main/client -O client
+        mv client /data/data/com.termux/files/usr/bin/client
         chmod +x /data/data/com.termux/files/usr/bin/client
         echo "dnstt-client installed."
         main_installation
