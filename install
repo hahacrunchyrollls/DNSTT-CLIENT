@@ -3,8 +3,8 @@ rm -rf install
 
 pkg update && pkg upgrade -y
 
-curl -sLo "$PREFIX/bin/dnstt" "https://dnstt.network/dnstt-client-linux-arm64"
-chmod +x "$PREFIX/bin/dnstt"
+curl -sLo "$PREFIX/bin/dnstt-client" "https://dnstt.network/dnstt-client-linux-arm64"
+chmod +x "$PREFIX/bin/dnstt-client"
 
 ARCH=$(uname -m)
 
