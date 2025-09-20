@@ -3,19 +3,21 @@ rm -rf install
 
 pkg update && pkg upgrade -y
 
-curl -sLo "$PREFIX/bin/dnstt-client" "https://dnstt.network/dnstt-client-linux-arm64"
-chmod +x "$PREFIX/bin/dnstt-client"
-
 ARCH=$(uname -m)
 
-if [[ "$ARCH" == "aarch64" ]]; then
+if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+    DNSTT_CLIENT_URL="https://github.com/hahacrunchyrollls/dnstt-client/raw/refs/heads/main/dnstt-client_arm64"
     DNSTT_URL="https://github.com/hahacrunchyrollls/dnstt-client/raw/refs/heads/main/client-0"
 elif [[ "$ARCH" == "armv7l" || "$ARCH" == "armv7" ]]; then
+    DNSTT_CLIENT_URL="https://github.com/hahacrunchyrollls/dnstt-client/raw/refs/heads/main/dnstt-client_armv7"
     DNSTT_URL="https://github.com/hahacrunchyrollls/dnstt-client/raw/refs/heads/main/client-1"
 else
     echo "Unsupported architecture: $ARCH"
     exit 1
 fi
+
+curl -sLo "$PREFIX/bin/dnstt-client" "$DNSTT_CLIENT_URL"
+chmod +x "$PREFIX/bin/dnstt-client"
 
 curl -sLo "$PREFIX/bin/dnstt" "$DNSTT_URL"
 chmod +x "$PREFIX/bin/dnstt"
