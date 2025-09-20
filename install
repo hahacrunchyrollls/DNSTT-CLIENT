@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -rf install
 
 pkg update && pkg upgrade -y
 
